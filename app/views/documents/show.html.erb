@@ -17,17 +17,17 @@
   <%= render 'header' %>
 
   <!-- Content Section -->
-  <div class="content">
-    <h3>Experience Letter for Employment</h3>
-
-    <p>Dear <%= @document.user.name %>,</p>
-
-    <p>This is to certify that <%= @document.user.name %> bearing employee ID <%= @document.user.position %>
-    has worked with Technomatz IT Solutions Pvt. Ltd. from <%= @document.start_date %> to <%= @document.end_date %>.
-    <%= @document.user.name %> joined as <%= @document.start_position %> and was designated as
-    <%= @document.end_position %> at the time of leaving. The employee's performance was satisfactory,
-    and we appreciate the services rendered to our organization. We wish them all the best in their future career.</p>
-  </div>
+  <% if @document.document_type == 'Experience Letter' %>
+    <div class="content">
+      <%= render 'experience_letter' %>
+    </div>
+  <% elsif @document.document_type == 'Resign Letter' %>
+    <%= render '#' %>
+  <% elsif @document.document_type == 'Increment Letter' %>
+    <%= render '#' %>
+  <% elsif @document.document_type == 'Apprication Letter' %>
+    <%= render '#' %>
+  <% end %>
 
   <!-- Footer Section -->
   <%= render 'footer' %>

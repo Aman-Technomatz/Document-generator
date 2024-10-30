@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :document_type, "Document Type", style: "display: block" %>
-    <%= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter"]), {}, { style: "width: 100%" } %>
+    <%= form.select :document_type, options_for_select(["Resign Letter", "Apprication Letter", "Experience Letter", "Increment Letter"]), {}, { style: "width: 100%" } %>
   </div>
 
 
@@ -43,13 +43,18 @@
   </div>
 
   <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
     <%= form.label :start_date, style: "display: block" %>
     <%= form.date_field :start_date %>
   </div>
 
   <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
+    <%= form.label :employee_id, style: "display: block" %>
+    <%= form.text_field :employee_id %>
   </div>
 
   <fieldset>
