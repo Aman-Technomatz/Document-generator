@@ -1,10 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Experience Letter</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; padding: 20px; }
+    .header, .footer { text-align: center; font-size: 12px; }
+    h2, h3 { text-align: center; }
+    .content { margin-top: 30px; line-height: 1.6; }
+    .disclaimer { font-size: 10px; color: #666; margin-top: 20px; text-align: center; }
+    hr { border: 1px solid #333; }
+  </style>
+</head>
+<body>
 
-<%= render @document %>
+  <!-- Header Section -->
+  <%= render 'header' %>
 
-<div>
-  <%= link_to "Edit this document", edit_document_path(@document) %> |
-  <%= link_to "Back to documents", documents_path %>
+  <!-- Content Section -->
+  <div class="content">
+    <h3>Experience Letter for Employment</h3>
 
-  <%= button_to "Destroy this document", @document, method: :delete %>
-</div>
+    <p>Dear <%= @document.user.name %>,</p>
+
+    <p>This is to certify that <%= @document.user.name %> bearing employee ID <%= @document.user.position %>
+    has worked with Technomatz IT Solutions Pvt. Ltd. from <%= @document.start_date %> to <%= @document.end_date %>.
+    <%= @document.user.name %> joined as <%= @document.start_position %> and was designated as
+    <%= @document.end_position %> at the time of leaving. The employee's performance was satisfactory,
+    and we appreciate the services rendered to our organization. We wish them all the best in their future career.</p>
+  </div>
+
+  <!-- Footer Section -->
+  <%= render 'footer' %>
+
+</body>
+</html>
+<% unless request.format.pdf? %>
+  <%= link_to "Download PDF", document_path(@document, format: :pdf), class: "btn btn-primary" %>
+<% end %>

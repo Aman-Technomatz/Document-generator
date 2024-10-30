@@ -23,5 +23,6 @@ module PdfLetterGenerator
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.middleware.use WickedPdf::Middleware
   end
 end

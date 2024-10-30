@@ -1,18 +1,26 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
 
-  # GET /documents or /documents.json
   def index
     @documents = Document.all
   end
 
-  # GET /documents/1 or /documents/1.json
   def show
+    @document = Document.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Document_#{@document.id}"
+      end
+    end
   end
+
 
   # GET /documents/new
   def new
     @document = Document.new
+    @document.build_user # Initialize user fields for nested form
   end
 
   # GET /documents/1/edit
@@ -21,7 +29,13 @@ class DocumentsController < ApplicationController
 
   # POST /documents or /documents.json
   def create
-    @document = Document.new(document_params)
+    if params[:user_option] == 'new'
+      # If creating a new user, use nested attributes
+      @document = Document.new(document_params.merge(user_id: nil))
+    else
+      # Otherwise, ignore nested user attributes
+      @document = Document.new(document_params.except(:user_attributes))
+    end
 
     respond_to do |format|
       if @document.save
@@ -65,6 +79,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:title, :content, :user_id, :document_type, :remark)
+      params.require(:document).permit(:title, :document_type, :end_position, :start_position, :end_date, :start_date, :user_id, user_attributes: [:name, :email, :position])
     end
 end

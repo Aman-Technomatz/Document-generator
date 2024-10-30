@@ -22,20 +22,81 @@
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.label :document_type, "Document Type", style: "display: block" %>
+    <%= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter"]), {}, { style: "width: 100%" } %>
   </div>
 
-  <div>
-    <%= form.label :document_type, style: "display: block" %>
-    <%= form.text_field :document_type %>
-  </div>
 
   <div>
     <%= form.label :remark, style: "display: block" %>
     <%= form.text_field :remark %>
   </div>
 
+  <div>
+    <%= form.label :end_position, style: "display: block" %>
+    <%= form.text_field :end_position %>
+  </div>
+
+  <div>
+    <%= form.label :start_position, style: "display: block" %>
+    <%= form.text_field :start_position %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <fieldset>
+    <legend>User Information</legend>
+
+    <!-- Option to select an existing user -->
+    <div class="field">
+      <label>
+        <input type="radio" name="user_option" value="existing" checked onclick="toggleUserFields(false)">
+        Select Existing User
+      </label>
+      <%= form.collection_select :user_id, User.all, :id, :name, { prompt: "Select a User" }, { id: 'document_user_id' } %>
+    </div>
+
+    <!-- Option to create a new user -->
+    <div class="field">
+      <label>
+        <input type="radio" name="user_option" value="new" onclick="toggleUserFields(true)">
+        Create New User
+      </label>
+    </div>
+
+    <!-- New User Fields (hidden by default) -->
+    <div id="new_user_fields" style="display: none;">
+      <%= form.fields_for :user do |user_form| %>
+        <div class="field">
+          <%= user_form.label :name %>
+          <%= user_form.text_field :name %>
+        </div>
+        <div class="field">
+          <%= user_form.label :email %>
+          <%= user_form.email_field :email %>
+        </div>
+        <div class="field">
+          <%= user_form.label :position %>
+          <%= user_form.text_field :position %>
+        </div>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <script>
+    function toggleUserFields(showNewUserFields) {
+      document.getElementById('new_user_fields').style.display = showNewUserFields ? 'block' : 'none';
+      document.getElementById('document_user_id').disabled = showNewUserFields;
+    }
+  </script>
   <div>
     <%= form.submit %>
   </div>

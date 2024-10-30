@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_29_093508) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_30_065207) do
   create_table "documents", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -19,6 +19,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_29_093508) do
     t.string "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "end_position"
+    t.string "start_position"
+    t.date "start_date"
+    t.date "end_date"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
