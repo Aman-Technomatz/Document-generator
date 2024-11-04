@@ -22,9 +22,84 @@
       <%= form.text_area :content, class: "form-control" %>
     </div>
 
-    <div class="mb-3">
-      <%= form.label :document_type, "Document Type", class: "form-label" %>
-      <%= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter"]), {}, class: "form-select" %>
+  <div class="mb-3">
+    <%= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter", "Offer Letter"]), {}, class: "form-select" %>
+
+    </div>
+    <div id="offer_letter_fields" class="conditional-fields" style="display: none;">
+      <div>
+        <%= form.label :start_date, style: "display: block" %>
+        <%= form.date_field :start_date %>
+      </div>
+      <div>
+        <%= form.label :start_position, style: "display: block" %>
+        <%= form.text_field :start_position %>
+      </div>
+      <div>
+        <%= form.label :ctc, style: "display: block" %>
+        <%= form.text_field :ctc %>
+      </div>
+    </div>
+
+    <div id="experience_letter_fields" class="conditional-fields" style="display: none;">
+      <div>
+        <%= form.label :experience_years, style: "display: block" %>
+        <%= form.text_field :experience_years %>
+      </div>
+      <div>
+        <%= form.label :current_salary, style: "display: block" %>
+        <%= form.text_field :current_salary %>
+      </div>
+      <div>
+        <%= form.label :start_position, style: "display: block" %>
+        <%= form.text_area :start_position %>
+      </div>
+      <div>
+        <%= form.label :end_position, style: "display: block" %>
+        <%= form.text_area :end_position %>
+      </div>
+    </div>
+
+    <div id="resignation_letter_fields" class="conditional-fields" style="display: none;">
+      <div>
+        <%= form.label :last_working_day, style: "display: block" %>
+        <%= form.date_field :last_working_day %>
+      </div>
+      <div>
+        <%= form.label :end_position, style: "display: block" %>
+        <%= form.text_area :end_position %>
+      </div>
+      <div>
+        <%= form.label :reason, style: "display: block" %>
+        <%= form.text_area :reason %>
+      </div>
+      <div>
+        <%= form.label :gratitude, style: "display: block" %>
+        <%= form.text_area :gratitude %>
+      </div>
+    </div>
+
+    <div id="increment_letter_fields" class="conditional-fields" style="display: none;">
+      <div>
+        <%= form.label :new_salary, style: "display: block" %>
+        <%= form.text_field :new_salary %>
+      </div>
+      <div>
+        <%= form.label :effective_date, style: "display: block" %>
+        <%= form.date_field :effective_date %>
+      </div>
+      <div>
+        <%= form.label :start_position, style: "display: block" %>
+        <%= form.text_area :start_position %>
+      </div>
+      <div>
+        <%= form.label :end_position, style: "display: block" %>
+        <%= form.text_area :end_position %>
+      </div>
+      <div>
+        <%= form.label :reason, style: "display: block" %>
+        <%= form.text_area :reason %>
+      </div>
     </div>
 
     <div class="mb-3">
@@ -91,6 +166,7 @@
 
     <script>
       function toggleUserFields(showNewUserFields) {
+      console.log("I am in toggle user field")
         document.getElementById('new_user_fields').style.display = showNewUserFields ? 'block' : 'none';
         document.getElementById('document_user_id').disabled = showNewUserFields;
       }
