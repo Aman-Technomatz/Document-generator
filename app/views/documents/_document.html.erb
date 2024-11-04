@@ -1,27 +1,18 @@
-<div id="<%= dom_id document %>">
-  <p>
-    <strong>Title:</strong>
-    <%= document.title %>
-  </p>
+<div class="col-md-6 mb-4">
+  <div class="card">
+    <div class="card-header">
+      <strong><%= document.title %></strong>
+    </div>
+    <div class="card-body">
+      <p><strong>Content:</strong> <%= document.content %></p>
+      <p><strong>User:</strong> <%= document.user_id %></p>
+      <p><strong>Document Type:</strong> <%= document.document_type %></p>
+      <p><strong>Remark:</strong> <%= document.remark %></p>
 
-  <p>
-    <strong>Content:</strong>
-    <%= document.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= document.user_id %>
-  </p>
-
-  <p>
-    <strong>Document type:</strong>
-    <%= document.document_type %>
-  </p>
-
-  <p>
-    <strong>Remark:</strong>
-    <%= document.remark %>
-  </p>
-
+      <!-- Show Document Button -->
+      <div class="mt-3">
+        <%= link_to "Show this document", document_path(document), class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
 </div>

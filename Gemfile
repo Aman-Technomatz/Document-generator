@@ -46,9 +46,13 @@ gem "bootsnap", require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-gem "tailwindcss-rails"
+# gem "tailwindcss-rails"
 
-gem "tailwindcss-ruby", "3.4.13"
+# gem "tailwindcss-ruby", "3.4.13"
+gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'sassc-rails'
+gem 'cssbundling-rails'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -1,14 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <p class="text-success"><%= notice %></p>
 
-<h1>Documents</h1>
+  <h1 class="mb-4">Documents</h1>
 
-<div id="documents">
+  <div class="mb-3">
+    <%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
+  </div>
+
   <% @documents.each do |document| %>
     <%= render document %>
-    <p>
-      <%= link_to "Show this document", document %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New document", new_document_path %>
