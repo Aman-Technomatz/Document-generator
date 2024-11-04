@@ -22,159 +22,160 @@
       <%= form.text_area :content, class: "form-control" %>
     </div>
 
-  <div class="mb-3">
-    <%= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter", "Offer Letter"]), {}, class: "form-select" %>
-
-    </div>
-    <div id="offer_letter_fields" class="conditional-fields" style="display: none;">
-      <div>
-        <%= form.label :start_date, style: "display: block" %>
-        <%= form.date_field :start_date %>
-      </div>
-      <div>
-        <%= form.label :start_position, style: "display: block" %>
-        <%= form.text_field :start_position %>
-      </div>
-      <div>
-        <%= form.label :ctc, style: "display: block" %>
-        <%= form.text_field :ctc %>
-      </div>
-    </div>
-
-    <div id="experience_letter_fields" class="conditional-fields" style="display: none;">
-      <div>
-        <%= form.label :experience_years, style: "display: block" %>
-        <%= form.text_field :experience_years %>
-      </div>
-      <div>
-        <%= form.label :current_salary, style: "display: block" %>
-        <%= form.text_field :current_salary %>
-      </div>
-      <div>
-        <%= form.label :start_position, style: "display: block" %>
-        <%= form.text_area :start_position %>
-      </div>
-      <div>
-        <%= form.label :end_position, style: "display: block" %>
-        <%= form.text_area :end_position %>
-      </div>
-    </div>
-
-    <div id="resignation_letter_fields" class="conditional-fields" style="display: none;">
-      <div>
-        <%= form.label :last_working_day, style: "display: block" %>
-        <%= form.date_field :last_working_day %>
-      </div>
-      <div>
-        <%= form.label :end_position, style: "display: block" %>
-        <%= form.text_area :end_position %>
-      </div>
-      <div>
-        <%= form.label :reason, style: "display: block" %>
-        <%= form.text_area :reason %>
-      </div>
-      <div>
-        <%= form.label :gratitude, style: "display: block" %>
-        <%= form.text_area :gratitude %>
-      </div>
-    </div>
-
-    <div id="increment_letter_fields" class="conditional-fields" style="display: none;">
-      <div>
-        <%= form.label :new_salary, style: "display: block" %>
-        <%= form.text_field :new_salary %>
-      </div>
-      <div>
-        <%= form.label :effective_date, style: "display: block" %>
-        <%= form.date_field :effective_date %>
-      </div>
-      <div>
-        <%= form.label :start_position, style: "display: block" %>
-        <%= form.text_area :start_position %>
-      </div>
-      <div>
-        <%= form.label :end_position, style: "display: block" %>
-        <%= form.text_area :end_position %>
-      </div>
-      <div>
-        <%= form.label :reason, style: "display: block" %>
-        <%= form.text_area :reason %>
-      </div>
-    </div>
-
     <div class="mb-3">
-      <%= form.label :remark, class: "form-label" %>
-      <%= form.text_field :remark, class: "form-control" %>
-    </div>
+      <%#= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter", "Offer Letter"]), {}, class: "form-select" %>
+      <%= form.select :document_type, options_for_select([ ['Select Document Type', ''], ['Resign Letter', 'resign_letter'], ['Experience Letter', 'experience_letter'], ['Increment Letter', 'increment_letter'], ['Offer Letter', 'offer_letter']]), {}, class: "form-select" %>
 
-    <div class="mb-3">
-      <%= form.label :end_position, class: "form-label" %>
-      <%= form.text_field :end_position, class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :start_position, class: "form-label" %>
-      <%= form.text_field :start_position, class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :end_date, class: "form-label" %>
-      <%= form.date_field :end_date, class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :start_date, class: "form-label" %>
-      <%= form.date_field :start_date, class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :employee_id, class: "form-label" %>
-      <%= form.text_field :employee_id, class: "form-control" %>
-    </div>
-
-    <fieldset class="border p-3 mb-3">
-      <legend class="col-form-label">User Information</legend>
-
-      <div class="form-check mb-2">
-        <%= form.radio_button :user_option, 'existing', checked: true, class: "form-check-input", onclick: "toggleUserFields(false)" %>
-        <%= form.label :user_option_existing, "Select Existing User", class: "form-check-label" %>
-        <%= form.collection_select :user_id, User.all, :id, :name, { prompt: "Select a User" }, { id: 'document_user_id', class: "form-select" } %>
-      </div>
-
-      <div class="form-check mb-2">
-        <%= form.radio_button :user_option, 'new', class: "form-check-input", onclick: "toggleUserFields(true)" %>
-        <%= form.label :user_option_new, "Create New User", class: "form-check-label" %>
-      </div>
-
-      <div id="new_user_fields" style="display: none;">
-        <%= form.fields_for :user do |user_form| %>
-          <div class="mb-3">
-            <%= user_form.label :name, class: "form-label" %>
-            <%= user_form.text_field :name, class: "form-control" %>
+        </div>
+        <div id="offer_letter_fields" class="conditional-fields" style="display: none;">
+          <div>
+            <%= form.label :start_date, style: "display: block" %>
+            <%= form.date_field :start_date %>
           </div>
-          <div class="mb-3">
-            <%= user_form.label :email, class: "form-label" %>
-            <%= user_form.email_field :email, class: "form-control" %>
+          <div>
+            <%= form.label :start_position, style: "display: block" %>
+            <%= form.text_field :start_position %>
           </div>
-          <div class="mb-3">
-            <%= user_form.label :position, class: "form-label" %>
-            <%= user_form.text_field :position, class: "form-control" %>
+          <div>
+            <%= form.label :ctc, style: "display: block" %>
+            <%= form.text_field :ctc %>
           </div>
-        <% end %>
-      </div>
-    </fieldset>
+        </div>
 
-    <script>
-      function toggleUserFields(showNewUserFields) {
-      console.log("I am in toggle user field")
-        document.getElementById('new_user_fields').style.display = showNewUserFields ? 'block' : 'none';
-        document.getElementById('document_user_id').disabled = showNewUserFields;
-      }
-    </script>
+        <div id="experience_letter_fields" class="conditional-fields" style="display: none;">
+          <div>
+            <%= form.label :experience_years, style: "display: block" %>
+            <%= form.text_field :experience_years %>
+          </div>
+          <div>
+            <%= form.label :current_salary, style: "display: block" %>
+            <%= form.text_field :current_salary %>
+          </div>
+          <div>
+            <%= form.label :start_position, style: "display: block" %>
+            <%= form.text_area :start_position %>
+          </div>
+          <div>
+            <%= form.label :end_position, style: "display: block" %>
+            <%= form.text_area :end_position %>
+          </div>
+        </div>
 
-    <div class="mt-3">
-      <%= form.submit class: "btn btn-primary" %>
-      <%= link_to 'Cancel', documents_path, class: "btn btn-secondary" %>
+        <div id="resignation_letter_fields" class="conditional-fields" style="display: none;">
+          <div>
+            <%= form.label :last_working_day, style: "display: block" %>
+            <%= form.date_field :last_working_day %>
+          </div>
+          <div>
+            <%= form.label :end_position, style: "display: block" %>
+            <%= form.text_area :end_position %>
+          </div>
+          <div>
+            <%= form.label :reason, style: "display: block" %>
+            <%= form.text_area :reason %>
+          </div>
+          <div>
+            <%= form.label :gratitude, style: "display: block" %>
+            <%= form.text_area :gratitude %>
+          </div>
+        </div>
+
+        <div id="increment_letter_fields" class="conditional-fields" style="display: none;">
+          <div>
+            <%= form.label :new_salary, style: "display: block" %>
+            <%= form.text_field :new_salary %>
+          </div>
+          <div>
+            <%= form.label :effective_date, style: "display: block" %>
+            <%= form.date_field :effective_date %>
+          </div>
+          <div>
+            <%= form.label :start_position, style: "display: block" %>
+            <%= form.text_area :start_position %>
+          </div>
+          <div>
+            <%= form.label :end_position, style: "display: block" %>
+            <%= form.text_area :end_position %>
+          </div>
+          <div>
+            <%= form.label :reason, style: "display: block" %>
+            <%= form.text_area :reason %>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :remark, class: "form-label" %>
+          <%= form.text_field :remark, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :end_position, class: "form-label" %>
+          <%= form.text_field :end_position, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :start_position, class: "form-label" %>
+          <%= form.text_field :start_position, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :end_date, class: "form-label" %>
+          <%= form.date_field :end_date, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :start_date, class: "form-label" %>
+          <%= form.date_field :start_date, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :employee_id, class: "form-label" %>
+          <%= form.text_field :employee_id, class: "form-control" %>
+        </div>
+
+        <fieldset class="border p-3 mb-3">
+          <legend class="col-form-label">User Information</legend>
+
+          <div class="form-check mb-2">
+            <%= form.radio_button :user_option, 'existing', checked: true, class: "form-check-input", onclick: "toggleUserFields(false)" %>
+            <%= form.label :user_option_existing, "Select Existing User", class: "form-check-label" %>
+            <%= form.collection_select :user_id, User.all, :id, :name, { prompt: "Select a User" }, { id: 'document_user_id', class: "form-select" } %>
+          </div>
+
+          <div class="form-check mb-2">
+            <%= form.radio_button :user_option, 'new', class: "form-check-input", onclick: "toggleUserFields(true)" %>
+            <%= form.label :user_option_new, "Create New User", class: "form-check-label" %>
+          </div>
+
+          <div id="new_user_fields" style="display: none;">
+            <%= form.fields_for :user do |user_form| %>
+              <div class="mb-3">
+                <%= user_form.label :name, class: "form-label" %>
+                <%= user_form.text_field :name, class: "form-control" %>
+              </div>
+              <div class="mb-3">
+                <%= user_form.label :email, class: "form-label" %>
+                <%= user_form.email_field :email, class: "form-control" %>
+              </div>
+              <div class="mb-3">
+                <%= user_form.label :position, class: "form-label" %>
+                <%= user_form.text_field :position, class: "form-control" %>
+              </div>
+            <% end %>
+          </div>
+        </fieldset>
+
+        <script>
+          function toggleUserFields(showNewUserFields) {
+            document.getElementById('new_user_fields').style.display = showNewUserFields ? 'block' : 'none';
+            document.getElementById('document_user_id').disabled = showNewUserFields;
+          }
+        </script>
+
+        <div class="mt-3">
+          <%= form.submit class: "btn btn-primary" %>
+          <%= link_to 'Cancel', documents_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
 </div>
