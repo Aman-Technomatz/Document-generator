@@ -3,34 +3,48 @@
 <head>
   <title>Experience Letter</title>
   <style>
-    body { font-family: Arial, sans-serif; color: #333; padding: 20px; }
+    @page {
+    size: A4;
+    margin: 20mm;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+      line-height: 1.6;
+      color: #333;
+    }
     .header, .footer { text-align: center; font-size: 12px; }
     h2, h3 { text-align: center; }
-    .content { margin-top: 30px; line-height: 1.6; }
-    .disclaimer { font-size: 10px; color: #666; margin-top: 20px; text-align: center; }
+    .disclaimer { font-size: 16px; color: #000; margin-top: 6rem; text-align: center; font-weight: 600 }
+    .header {
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+    text-decoration: underline;
+  }
     hr { border: 1px solid #333; }
   </style>
 </head>
 <body>
 
-  <!-- Header Section -->
-  <%= render 'header' %>
+  <div class="header py-2">
+    <%= render 'header' %>
+  </div>
 
-  <!-- Content Section -->
   <% if @document.document_type == 'Experience Letter' %>
-    <div class="content">
       <%= render 'experience_letter' %>
-    </div>
   <% elsif @document.document_type == 'Resign Letter' %>
-    <%= render '#' %>
+    <%= render 'resign_letter' %>
   <% elsif @document.document_type == 'Increment Letter' %>
-    <%= render '#' %>
+    <%= render 'increment_letter' %>
   <% elsif @document.document_type == 'Apprication Letter' %>
-    <%= render '#' %>
+    <%= render 'apprication_letter' %>
   <% end %>
 
-  <!-- Footer Section -->
-  <%= render 'footer' %>
+  <div class="footer py-2">
+    <%= render 'footer' %>
+  </div>
 
 </body>
 </html>
