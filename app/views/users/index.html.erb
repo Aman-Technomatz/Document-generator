@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <p class="text-success"><%= notice %></p>
 
-<h1>Users</h1>
+  <h1 class="mb-4">Users</h1>
 
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+  <div class="mb-3">
+    <%= link_to "New User", new_user_path, class: "btn btn-primary" %>
+  </div>
+
+  <div id="users" class="row">
+    <% @users.each do |user| %>
+      <%= render user %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New user", new_user_path %>

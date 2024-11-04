@@ -1,11 +1,38 @@
-<div class="content">
-  <h3>Experience Letter for Employment</h3>
+<div class="content px-5">
+  <h2 class="text-center mb-4 header mt-3">Experience Letter for Employment</h2>
 
-  <p>Dear <%= @document.user.name %>,</p>
+  <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
 
-  <p>This is to certify that <%= @document.user.name %> bearing employee ID <%= @document.employee_id %>
-  has worked with Technomatz IT Solutions Pvt. Ltd. from <%= @document.start_date %> to <%= @document.end_date %>.
-  <%= @document.user.name %> joined as <%= @document.start_position %> and was designated as
-  <%= @document.end_position %> at the time of leaving. The employee's performance was satisfactory,
-  and we appreciate the services rendered to our organization. We wish them all the best in their future career.</p>
+  <p><strong>To Whom It May Concern,</strong></p>
+
+  <p class="mt-5 mb-2">
+    This is to certify that <strong><%= @document.user.name %></strong> was employed with
+    <strong>Technomatz IT Solutions Pvt Ltd.</strong>
+  </p>
+
+  <p class="mb-2">
+    from <strong><%= @document.start_date.strftime('%d %B %Y') %></strong> to
+    <strong><%= @document.end_date.strftime('%d %B %Y') %></strong> in the capacity of
+    <strong><%= @document.end_position %></strong>.
+  </p>
+
+  <p class="lh-lg">
+    During <strong><%= @document.user.name %></strong>'s tenure, they were involved in various
+    projects, contributing effectively to the growth and success of the organization. They demonstrated
+    a professional attitude and technical expertise throughout their employment.
+  </p>
+
+  <p class="mt-5">
+    We appreciate the dedication and efforts <strong><%= @document.user.name %></strong> put
+    into their work during their time at Technomatz. We wish them success and all the best in their
+    future endeavors.
+  </p>
+
+  <p class="mt-5 mb-2">Thanks and Regards,</p>
+  <p class="mb-2"><strong>HR Department</strong></p>
+  <p><strong>Technomatz IT Solutions Pvt Ltd.</strong></p>
+
+  <p class="disclaimer mb-3">
+    *This is a computer-generated experience letter, signature or seal is not required.
+  </p>
 </div>
