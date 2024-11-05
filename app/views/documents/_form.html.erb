@@ -26,10 +26,17 @@
         </div>
 
         <div class="mb-3">
-         <%= form.select :document_type, options_for_select([ ['Select Document Type', ''], ['Relieving Letter', 'relieving_letter'], ['Experience Letter', 'experience_letter'], ['Appointment Letter', 'appointment_letter'], ['Offer Letter', 'offer_letter']]), {}, class: "form-select" %>
+          <%= form.label :document_type, class: "form-label" %>
+          <%= form.select :document_type, options_for_select([
+            ['Select Document Type', ''],
+            ['Relieving Letter', 'relieving_letter'],
+            ['Experience Letter', 'experience_letter'],
+            ['Appointment Letter', 'appointment_letter'],
+            ['Offer Letter', 'offer_letter']]),
+            {}, class: "form-select", id: "document_type" %>
         </div>
 
-        <div id="offer_letter_fields" class="conditional-fields" style="display: none;">
+        <div id="common_fields">
           <div class="mb-3">
             <%= form.label :start_date, class: "form-label" %>
             <%= form.date_field :start_date, class: "form-control form-control-sm" %>
@@ -46,10 +53,6 @@
 
         <div id="appointment_letter_fields" class="conditional-fields" style="display: none;">
           <div class="mb-3">
-            <%= form.label :starting_date, class: "form-label" %>
-            <%= form.date_field :starting_date, class: "form-control form-control-sm" %>
-          </div>
-          <div class="mb-3">
             <%= form.label :work_timings, class: "form-label" %>
             <%= form.number_field :work_timings, class: "form-control form-control-sm" %>
           </div>
@@ -59,11 +62,7 @@
           </div>
           <div class="mb-3">
             <%= form.label :service_agreement, class: "form-label" %>
-            <%= form.number_field :service_agreement, class: "form-control form-control-sm", rows: 3 %>
-          </div>
-          <div class="mb-3">
-            <%= form.label :salary_ctc, class: "form-label" %>
-            <%= form.text_field :salary_ctc, class: "form-control form-control-sm" %>
+            <%= form.number_field :service_agreement, class: "form-control form-control-sm" %>
           </div>
           <div class="mb-3">
             <%= form.label :annual_leave, class: "form-label" %>
@@ -75,7 +74,6 @@
           </div>
         </div>
 
-
         <div id="experience_letter_fields" class="conditional-fields" style="display: none;">
           <div class="mb-3">
             <%= form.label :experience_years, class: "form-label" %>
@@ -86,16 +84,8 @@
             <%= form.text_field :current_salary, class: "form-control form-control-sm" %>
           </div>
           <div class="mb-3">
-            <%= form.label :start_position, class: "form-label" %>
-            <%= form.text_area :start_position, class: "form-control form-control-sm" %>
-          </div>
-          <div class="mb-3">
             <%= form.label :end_position, class: "form-label" %>
             <%= form.text_area :end_position, class: "form-control form-control-sm" %>
-          </div>
-           <div class="mb-3">
-            <%= form.label :start_date, class: "form-label" %>
-            <%= form.date_field :start_date, class: "form-control form-control-sm" %>
           </div>
           <div class="mb-3">
             <%= form.label :end_date, class: "form-label" %>
@@ -107,10 +97,6 @@
           <div class="mb-3">
             <%= form.label :last_working_day, class: "form-label" %>
             <%= form.date_field :last_working_day, class: "form-control form-control-sm" %>
-          </div>
-          <div class="mb-3">
-            <%= form.label :position, class: "form-label" %>
-            <%= form.text_area :end_position, class: "form-control form-control-sm" %>
           </div>
           <div class="mb-3">
             <%= form.label :gratitude, class: "form-label" %>
@@ -128,18 +114,9 @@
             <%= form.date_field :effective_date, class: "form-control form-control-sm" %>
           </div>
           <div class="mb-3">
-            <%= form.label :start_position, class: "form-label" %>
-            <%= form.text_field :start_position, class: "form-control form-control-sm" %>
-          </div>
-          <div class="mb-3">
             <%= form.label :reason, class: "form-label" %>
             <%= form.text_area :reason, class: "form-control form-control-sm" %>
           </div>
-        </div>
-
-        <div class="mb-3">
-          <%= form.label :employee_id, class: "form-label" %>
-          <%= form.text_field :employee_id, class: "form-control form-control-sm" %>
         </div>
 
         <fieldset class="border p-3 mb-3">
