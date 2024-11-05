@@ -7,7 +7,25 @@
     <%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
   </div>
 
-  <% @documents.each do |document| %>
-    <%= render document %>
-  <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Document Id</th>
+        <th>Document Type</th>
+        <th>Employee Id</th>
+        <th>User Name</th>
+        <th>User Id</th>
+        <th>PDF</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Destroy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <%= render partial: "document", locals: { document: document } %>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
