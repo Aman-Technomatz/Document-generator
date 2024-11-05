@@ -3,16 +3,16 @@
 
   <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
 
-  <p><strong>Dear <%= @document.user.name %>,</strong></p>
+  <p><strong>Dear <%= @document.user.name.capitalize %>,</strong></p>
 
   <p class="mt-5 mb-2">
     This is with reference to your application and subsequent interview held at our office.
-    We are pleased to offer you a position as <strong><%= @document.start_position %></strong> and your compensation will be <strong><%= @document&.new_salary %></strong> as discussed and mutually agreed.
+    We are pleased to offer you a position as <strong><%= @document.start_position.capitalize %></strong> and your compensation will be <strong>Rs <%= @document&.ctc %>/- per annum</strong> as discussed and mutually agreed.
   </p>
 
   <p class="mb-2">
     Further, as discussed, you are expected to join us on or before
-    <strong><%= @document.start_date.strftime('%d %B %Y') %></strong> at our office. Please bring the following documents at the time of your joining:
+    <strong><%= @document&.start_date&.strftime('%d %B %Y') %></strong> at our office. Please bring the following documents at the time of your joining:
   </p>
 
   <ul class="mt-3">

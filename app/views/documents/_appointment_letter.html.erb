@@ -1,28 +1,28 @@
 <div class="content px-5">
   <h2 class="text-center mb-4 header mt-3">Appointment Letter</h2>
 
-  <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
+  <p class="mt-3 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
 
-  <p><strong>To:</strong> <%= @document.user.name %></p>
-  <p><strong>Position:</strong> HR Executive</p>
-  <p><strong>Subject:</strong> Appointment Letter</p>
+  <p style="margin-top: 0; margin-bottom: 0;"><strong>To:</strong> <%= @document.user.name.capitalize %></p>
+  <p style="margin-top: 0; margin-bottom: 0;"><strong>Position:</strong> HR Executive</p>
+  <p style="margin-top: 0; margin-bottom: 0;"><strong>Subject:</strong> Appointment Letter</p>
 
-  <p class="mt-5 mb-2"><strong>Dear <%= @document.user.name %>,</strong></p>
+  <p class="mb-2"><strong>Dear <%= @document.user.name.capitalize %>,</strong></p>
 
-  <p class="mt-5">
+  <p>
     Following your acceptance of the job offer, we are pleased to confirm your appointment
-    with <strong>Technomatz IT Solutions Pvt. Ltd.</strong> as a <strong><%= @document.start_position %></strong>.
+    with <strong>Technomatz IT Solutions Pvt. Ltd.</strong> as a <strong><%= @document.start_position.capitalize %></strong>.
     Your employment is subject to the terms and conditions listed below:
   </p>
 
   <ul class="mt-3">
-    <li><strong>Starting Date:</strong> <%= @document.start_date.strftime('%d %B %Y') %></li>
-    <li><strong>Work Timings:</strong> Flexible, with 8 hours of active work from Monday to Friday.</li>
-    <li><strong>Probation Period:</strong> Three months, after which employment becomes permanent.</li>
-    <li><strong>Service Agreement:</strong> Minimum association period of one year.</li>
-    <li><strong>Salary (CTC):</strong> <%= @document.new_salary %></li>
-    <li><strong>Annual Leave:</strong> 12 days of earned leave and 2 optional leave days per year.</li>
-    <li><strong>Notice Period:</strong> 45 working days required for resignation, with possible extensions.</li>
+    <li><strong>Starting Date:</strong> <%= @document&.start_date&.strftime('%d %B %Y') %></li>
+    <li><strong>Work Timings:</strong> Flexible, with <%= @document&.work_timings %> hours of active work from Monday to Friday.</li>
+    <li><strong>Probation Period:</strong> <%= @document&.probation_period.humanize %> months, after which employment becomes permanent.</li>
+    <li><strong>Service Agreement:</strong> Minimum association period of <%= @document&.service_agreement %> year.</li>
+    <li><strong>Salary (CTC):</strong> Rs <%= @document&.ctc %>/- per annum</li>
+    <li><strong>Annual Leave:</strong> <%= @document&.annual_leave %> days of earned leave and 2 optional leave days per year.</li>
+    <li><strong>Notice Period:</strong> <%= @document&.notice_period %> working days required for resignation, with possible extensions.</li>
   </ul>
 
   <p class="lh-lg mt-4">
@@ -34,17 +34,18 @@
     We look forward to years of fruitful cooperation and success.
   </p>
 
-  <div class="row mt-5">
-    <div class="col-6">
+  <div class="row mt-5" style="margin-top: 2rem;">
+    <div class="col-6" style="width: 48%; display: inline-block; vertical-align: top;">
       <p><strong>HR Department</strong></p>
       <p>Technomatz IT Solutions Pvt Ltd.</p>
       <p>____________________</p>
       <p>Name and signature</p>
     </div>
-    <div class="col-6 text-end">
+    <div class="col-6 text-end" style="width: 48%; display: inline-block; vertical-align: top; text-align: right;">
       <p>____________________</p>
       <p>Name and signature</p>
       <p>Employee</p>
     </div>
   </div>
+
 </div>
