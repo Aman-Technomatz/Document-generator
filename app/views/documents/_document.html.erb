@@ -1,18 +1,27 @@
-<div class="col-md-6 mb-4">
-  <div class="card">
-    <div class="card-header">
-      <strong><%= document.title %></strong>
-    </div>
-    <div class="card-body">
-      <p><strong>Content:</strong> <%= document.content %></p>
-      <p><strong>User:</strong> <%= document.user_id %></p>
-      <p><strong>Document Type:</strong> <%= document.document_type %></p>
-      <p><strong>Remark:</strong> <%= document.remark %></p>
-
-      <!-- Show Document Button -->
-      <div class="mt-3">
-        <%= link_to "Show this document", document_path(document), class: "btn btn-secondary" %>
-      </div>
-    </div>
-  </div>
-</div>
+<tr>
+  <td><%= document.id %></td>
+  <td><%= document.document_type %></td>
+  <td><%= document.employee_id %></td>
+  <td><%= document.user.name %></td>
+  <td><%= document.user.id %></td>
+  <td>
+    <%= link_to document_path(document, format: :pdf) do %>
+      <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBmY1HEr3yq0hzsiu9tvMvbZbjXePTgEbzrjwdpTmR-HYCUD-aIxzapel0HGuHlF6j3WA&usqp=CAU", size: '30x30' %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to document_path(document), class: "link-body-emphasis" do %>
+       <%= image_tag "https://media.istockphoto.com/id/845329690/vector/eye-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=1SnGiyGCXd83V7m2hX0EsghFSqtmApJ6Qyy2b8Y3L1k=", size: '33x33' %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to edit_document_path(document), class: "link-body-emphasis" do %>
+      <%= image_tag "https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-pencil-14.png", size: '23x23' %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to document_path(document), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link-body-emphasis" do %>
+      <%= image_tag "https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png", size: '23x23' %>
+    <% end %>
+  </td>
+</tr>
