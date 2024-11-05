@@ -5,25 +5,14 @@
 
   <p><strong>To Whom It May Concern,</strong></p>
 
-  <p class="mt-5 mb-2">
-    This is to certify that <strong><%= @document.user.name %></strong> was employed with
-    <strong>Technomatz IT Solutions Pvt Ltd.</strong>
-  </p>
-
-  <p class="mb-2">
-    from <strong><%= @document.start_date.strftime('%d %B %Y') %></strong> to
-    <strong><%= @document.end_date.strftime('%d %B %Y') %></strong> in the capacity of
-    <strong><%= @document.end_position %></strong>.
-  </p>
-
-  <p class="lh-lg">
-    During <strong><%= @document.user.name %></strong>'s tenure, they were involved in various
+  <p class="mt-5 mb-2 lh-lg">
+    This is to certify that <strong><%= @document.user.name.capitalize %></strong> was employed with <strong>Technomatz IT Solutions Pvt Ltd.</strong> from <strong><%= @document&.start_date&.strftime('%d %B %Y') %></strong> to <strong><%= @document&.end_date&.strftime('%d %B %Y') %></strong> in the capacity of <strong><%= @document.end_position.capitalize %></strong>. During <strong><%= @document.user.name.capitalize %></strong>'s tenure, they were involved in various
     projects, contributing effectively to the growth and success of the organization. They demonstrated
     a professional attitude and technical expertise throughout their employment.
   </p>
 
   <p class="mt-5">
-    We appreciate the dedication and efforts <strong><%= @document.user.name %></strong> put
+    We appreciate the dedication and efforts <strong><%= @document.user.name.capitalize %></strong> put
     into their work during their time at Technomatz. We wish them success and all the best in their
     future endeavors.
   </p>
