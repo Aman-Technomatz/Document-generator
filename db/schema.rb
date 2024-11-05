@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_30_101201) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_04_125853) do
   create_table "documents", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -24,6 +24,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_30_101201) do
     t.date "start_date"
     t.date "end_date"
     t.string "employee_id"
+    t.decimal "ctc"
+    t.integer "experience_years"
+    t.decimal "current_salary"
+    t.date "last_working_day"
+    t.date "effective_date"
+    t.decimal "new_salary"
+    t.text "reason"
+    t.text "gratitude"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 

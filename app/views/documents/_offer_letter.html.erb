@@ -1,0 +1,41 @@
+<div class="content px-5">
+  <h2 class="text-center mb-4 header mt-3">Offer Letter for Employment</h2>
+
+  <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
+
+  <p><strong>Dear <%= @document.user.name %>,</strong></p>
+
+  <p class="mt-5 mb-2">
+    This is with reference to your application and subsequent interview held at our office.
+    We are pleased to offer you a position as <strong><%= @document.start_position %></strong> and your compensation will be <strong><%= @document&.new_salary %></strong> as discussed and mutually agreed.
+  </p>
+
+  <p class="mb-2">
+    Further, as discussed, you are expected to join us on or before
+    <strong><%= @document.start_date.strftime('%d %B %Y') %></strong> at our office. Please bring the following documents at the time of your joining:
+  </p>
+
+  <ul class="mt-3">
+    <li>Four passport size photographs</li>
+    <li>Qualification Certificates (originals with one photocopy set; originals will be returned after verification)</li>
+    <li>Proof of residence</li>
+    <li>Photocopies of your Resignation Letter and the Relieving Letter from your current employer</li>
+    <li>Photocopy of your last drawn salary slip</li>
+    <li>Aadhar Card</li>
+    <li>PAN Card</li>
+  </ul>
+
+  <p class="lh-lg mt-4">
+    A detailed appointment letter along with the terms and conditions of your appointment will be
+    issued to you upon joining the company. Please send us a confirmation as a token of your acceptance
+    of this offer letter.
+  </p>
+
+  <p class="mt-5 mb-2">Thanks and Regards,</p>
+  <p class="mb-2"><strong>HR Department</strong></p>
+  <p><strong>Technomatz IT Solutions Pvt Ltd.</strong></p>
+
+  <p class="disclaimer mb-3">
+    *This is a computer-generated offer letter; signature or seal is not required.
+  </p>
+</div>

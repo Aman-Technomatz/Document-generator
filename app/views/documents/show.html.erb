@@ -31,15 +31,14 @@
   <div class="header py-2">
     <%= render 'header' %>
   </div>
-
-  <% if @document.document_type == 'Experience Letter' %>
+  <% if @document.document_type == 'experience_letter' %>
       <%= render 'experience_letter' %>
-  <% elsif @document.document_type == 'Resign Letter' %>
-    <%= render 'resign_letter' %>
-  <% elsif @document.document_type == 'Increment Letter' %>
-    <%= render 'increment_letter' %>
-  <% elsif @document.document_type == 'Apprication Letter' %>
-    <%= render 'apprication_letter' %>
+  <% elsif @document.document_type == 'relieving_letter' %>
+    <%= render 'relieving_letter' %>
+  <% elsif @document.document_type == 'appointment _letter' %>
+    <%= render 'appointment_letter' %>
+  <% elsif @document.document_type == 'offer_letter' %>
+    <%= render 'offer_letter' %>
   <% end %>
 
   <div class="footer py-2">

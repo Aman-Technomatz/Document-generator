@@ -23,8 +23,8 @@
     </div>
 
     <div class="mb-3">
-      <%#= form.select :document_type, options_for_select(["Resign Letter", "Application Letter", "Experience Letter", "Increment Letter", "Offer Letter"]), {}, class: "form-select" %>
-      <%= form.select :document_type, options_for_select([ ['Select Document Type', ''], ['Resign Letter', 'resign_letter'], ['Experience Letter', 'experience_letter'], ['Increment Letter', 'increment_letter'], ['Offer Letter', 'offer_letter']]), {}, class: "form-select" %>
+      <%#= form.select :document_type, options_for_select(["Relieving Letter", "Appointment Letter", "Experience Letter", "Increment Letter", "Offer Letter"]), {}, class: "form-select" %>
+      <%= form.select :document_type, options_for_select([ ['Select Document Type', ''], ['Relieving Letter', 'relieving_letter'], ['Experience Letter', 'experience_letter'], ['Appointment Letter', 'appointment_letter'], ['Offer Letter', 'offer_letter']]), {}, class: "form-select" %>
 
         </div>
         <div id="offer_letter_fields" class="conditional-fields" style="display: none;">
@@ -61,7 +61,7 @@
           </div>
         </div>
 
-        <div id="resignation_letter_fields" class="conditional-fields" style="display: none;">
+        <div id="relieving_letter_fields" class="conditional-fields" style="display: none;">
           <div>
             <%= form.label :last_working_day, style: "display: block" %>
             <%= form.date_field :last_working_day %>
@@ -80,7 +80,7 @@
           </div>
         </div>
 
-        <div id="increment_letter_fields" class="conditional-fields" style="display: none;">
+        <div id="appointment_letter_fields" class="conditional-fields" style="display: none;">
           <div>
             <%= form.label :new_salary, style: "display: block" %>
             <%= form.text_field :new_salary %>

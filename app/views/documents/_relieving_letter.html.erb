@@ -1,0 +1,25 @@
+<div class="content px-5">
+  <h2 class="text-center mb-4 header mt-3">Relieving Letter for Employment</h2>
+
+  <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
+
+  <p><strong>Dear <%= @document.user.name %>,</strong></p>
+
+  <p class="mt-5 mb-2">
+    This is with reference to your resignation request. The management has accepted your
+    request, and you are relieved from the services of the position of <strong><%= @document.end_position %></strong> with our organization, <strong>Technomatz IT Solutions Pvt Ltd.</strong>, with effect from the close of office hours on <strong><%= @document.end_date.strftime('%d %B %Y') %></strong>.
+  </p>
+
+  <p class="lh-lg">
+    We also certify that you have no dues with us. We thank you for your services and wish
+    you the very best in all your future endeavors.
+  </p>
+
+  <p class="mt-5 mb-2">Thanks and Regards,</p>
+  <p class="mb-2"><strong>HR Department</strong></p>
+  <p><strong>Technomatz IT Solutions Pvt Ltd.</strong></p>
+
+  <p class="disclaimer mb-3">
+    *This is a computer-generated relieving letter; signature or seal is not required.
+  </p>
+</div>
