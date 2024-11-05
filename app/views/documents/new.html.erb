@@ -1,9 +1,9 @@
-<h1>New document</h1>
+<div class="d-flex justify-content-center">
+  <h1>New document</h1>
+</div>
 
 <%= render "form", document: @document %>
-
 <br>
-
-<div>
-  <%= link_to "Back to documents", documents_path %>
-</div>
+  <div class="d-flex justify-content-center mt-4">
+    <%= link_to "Back to Documents", documents_path, class: "btn btn-secondary" %>
+  </div>
