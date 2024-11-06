@@ -1,6 +1,10 @@
+<% if flash[:alert] %>
+  <div class="alert alert-warning">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 <div class="container mt-4">
   <%= form_with(model: document, local: true, class: "needs-validation") do |form| %>
-
     <% if document.errors.any? %>
       <div class="alert alert-danger">
         <h4><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h4>
@@ -28,7 +32,7 @@
             ['Experience Letter', 'experience_letter'],
             ['Appointment Letter', 'appointment_letter'],
             ['Offer Letter', 'offer_letter']]),
-            {}, class: "form-select", id: "document_type" %>
+            { required: true }, class: "form-select", id: "document_type" %>
         </div>
 
         <div id="common_fields">

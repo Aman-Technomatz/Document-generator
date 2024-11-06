@@ -1,32 +1,46 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const documentTypeSelect = document.getElementById("document_type");
-    const commonFields = document.getElementById("common_fields");
-    const appointmentLetterFields = document.getElementById("appointment_letter_fields");
-    const experienceLetterFields = document.getElementById("experience_letter_fields");
-    const relievingLetterFields = document.getElementById("relieving_letter_fields");
-    function toggleFields() {
-      commonFields.style.display = "none";
-      appointmentLetterFields.style.display = "none";
-      experienceLetterFields.style.display = "none";
-      relievingLetterFields.style.display = "none";
-      const selectedDocumentType = documentTypeSelect.value;
-      if (selectedDocumentType === "offer_letter" || selectedDocumentType === "appointment_letter") {
-        commonFields.style.display = "block";
-        if (selectedDocumentType === "appointment_letter") {
-          appointmentLetterFields.style.display = "block";
-        }
-      } else if (selectedDocumentType === "experience_letter") {
-        commonFields.style.display = "block";
-        experienceLetterFields.style.display = "block";
-      } else if (selectedDocumentType === "relieving_letter") {
-        relievingLetterFields.style.display = "block";
-      }
-      if (selectedDocumentType !== "") {
-        document.getElementById('start_date').setAttribute('required', 'true');
-        document.getElementById('start_position').setAttribute('required', 'true');
-        document.getElementById("end_date").setAttribute("required", "true");
-      }
+document.addEventListener('DOMContentLoaded', function () {
+  function toggleDocumentFields() {
+    const docType = document.getElementById('document_type').value;
+
+    document.querySelectorAll('.conditional-fields').forEach(function (field) {
+      field.style.display = 'none';
+      field.querySelectorAll('input, select, textarea').forEach(function (input) {
+        input.removeAttribute('required');
+      });
+    });
+
+    document.querySelectorAll('#common_fields input').forEach(function (input) {
+      input.setAttribute('required', 'true');
+    });
+
+    switch (docType) {
+      case 'appointment_letter':
+        document.getElementById('appointment_letter_fields').style.display = 'block';
+        document.querySelectorAll('#appointment_letter_fields input').forEach(function (input) {
+          input.setAttribute('required', 'true');
+        });
+        break;
+
+      case 'experience_letter':
+        document.getElementById('experience_letter_fields').style.display = 'block';
+        document.querySelectorAll('#experience_letter_fields input').forEach(function (input) {
+          input.setAttribute('required', 'true');
+        });
+        break;
+
+      case 'relieving_letter':
+        document.getElementById('relieving_letter_fields').style.display = 'block';
+        document.querySelectorAll('#relieving_letter_fields input').forEach(function (input) {
+          input.setAttribute('required', 'true');
+        });
+        break;
+
+      default:
+        break;
     }
-    toggleFields();
-    documentTypeSelect.addEventListener("change", toggleFields);
-  });
+  }
+
+  toggleDocumentFields();
+
+  document.getElementById('document_type').addEventListener('change', toggleDocumentFields);
+});
