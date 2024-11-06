@@ -4,14 +4,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const appointmentLetterFields = document.getElementById("appointment_letter_fields");
     const experienceLetterFields = document.getElementById("experience_letter_fields");
     const relievingLetterFields = document.getElementById("relieving_letter_fields");
-    const incrementLetterFields = document.getElementById("increment_letter_fields");
-
     function toggleFields() {
       commonFields.style.display = "none";
       appointmentLetterFields.style.display = "none";
       experienceLetterFields.style.display = "none";
       relievingLetterFields.style.display = "none";
-      incrementLetterFields.style.display = "none";
       const selectedDocumentType = documentTypeSelect.value;
       if (selectedDocumentType === "offer_letter" || selectedDocumentType === "appointment_letter") {
         commonFields.style.display = "block";
@@ -23,12 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
         experienceLetterFields.style.display = "block";
       } else if (selectedDocumentType === "relieving_letter") {
         relievingLetterFields.style.display = "block";
-      } else if (selectedDocumentType === "increment_letter") {
-        incrementLetterFields.style.display = "block";
       }
       if (selectedDocumentType !== "") {
         document.getElementById('start_date').setAttribute('required', 'true');
         document.getElementById('start_position').setAttribute('required', 'true');
+        document.getElementById("end_date").setAttribute("required", "true");
       }
     }
     toggleFields();

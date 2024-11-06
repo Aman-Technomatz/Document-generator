@@ -16,13 +16,8 @@
       <div class="col-12 col-md-8 col-lg-6">
 
         <div class="mb-3">
-          <%= form.label :title, class: "form-label" %>
-          <%= form.text_field :title, class: "form-control form-control-sm" %>
-        </div>
-
-        <div class="mb-3">
-          <%= form.label :content, class: "form-label" %>
-          <%= form.text_area :content, class: "form-control form-control-sm" %>
+          <%= form.label :organization_name, class: "form-label" %>
+          <%= form.text_field :organization_name, value: 'Technomatz IT Solutions Private Limited', class: "form-control form-control-sm" %>
         </div>
 
         <div class="mb-3">
@@ -87,35 +82,20 @@
             <%= form.label :end_position, class: "form-label" %>
             <%= form.text_area :end_position, class: "form-control form-control-sm" %>
           </div>
-          <div class="mb-3">
+          <div class="mb-3" id="end_date">
             <%= form.label :end_date, class: "form-label" %>
             <%= form.date_field :end_date, class: "form-control form-control-sm" %>
           </div>
         </div>
 
         <div id="relieving_letter_fields" class="conditional-fields" style="display: none;">
-          <div class="mb-3">
-            <%= form.label :last_working_day, class: "form-label" %>
-            <%= form.date_field :last_working_day, class: "form-control form-control-sm" %>
+          <div class="mb-3" id="end_date">
+            <%= form.label :end_date, class: "form-label" %>
+            <%= form.date_field :end_date, class: "form-control form-control-sm" %>
           </div>
           <div class="mb-3">
             <%= form.label :gratitude, class: "form-label" %>
             <%= form.text_area :gratitude, class: "form-control form-control-sm" %>
-          </div>
-        </div>
-
-        <div id="increment_letter_fields" class="conditional-fields" style="display: none;">
-          <div class="mb-3">
-            <%= form.label :new_salary, class: "form-label" %>
-            <%= form.text_field :new_salary, class: "form-control form-control-sm" %>
-          </div>
-          <div class="mb-3">
-            <%= form.label :effective_date, class: "form-label" %>
-            <%= form.date_field :effective_date, class: "form-control form-control-sm" %>
-          </div>
-          <div class="mb-3">
-            <%= form.label :reason, class: "form-label" %>
-            <%= form.text_area :reason, class: "form-control form-control-sm" %>
           </div>
         </div>
 
