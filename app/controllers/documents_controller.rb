@@ -28,7 +28,12 @@ class DocumentsController < ApplicationController
     else
       user_id = params[:document][:user_id].presence
       @document = Document.new(document_params.except(:user_attributes).merge(user_id: user_id))
+      if @document.user_id.blank?
+        flash[:alert] = "Please select an existing user or create user."
+        return render :new, status: :unprocessable_entity
+      end
     end
+
     respond_to do |format|
       if @document.save
         format.html { redirect_to @document, notice: "Document was successfully created." }
