@@ -7,7 +7,7 @@
 
   <p class="mt-5 mb-2">
     This is with reference to your application and subsequent interview held at our office.
-    We are pleased to offer you a position as <strong><%= @document.start_position.capitalize %></strong> and your compensation will be <strong>Rs <%= @document&.ctc %>/- per annum</strong> as discussed and mutually agreed.
+    We are pleased to offer you a position as <strong><%= @document.start_position.capitalize %></strong> and your compensation will be <strong>Rs <%= @document.ctc.round %>/- per annum</strong> as discussed and mutually agreed.
   </p>
 
   <p class="mb-2">
