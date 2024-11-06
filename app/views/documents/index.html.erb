@@ -6,7 +6,10 @@
   <div class="mb-3">
     <%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
   </div>
-
+   <%= form_tag(documents_path, method: :get) do %>
+      <%= text_field_tag :query, params[:query], placeholder: "Search document" %>
+      <%= submit_tag "Search" %>
+  <% end %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -27,5 +30,5 @@
       <% end %>
     </tbody>
   </table>
-
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>

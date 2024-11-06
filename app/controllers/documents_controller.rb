@@ -2,7 +2,12 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy ]
 
   def index
-    @documents = Document.all
+    @documents = Document.search_by_query(params[:query])
+    if @documents.present?
+      @pagy, @documents = pagy(@documents)
+    else
+      flash[:alert] = "No result found."
+    end
   end
 
   def show
