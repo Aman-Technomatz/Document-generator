@@ -20,8 +20,8 @@
     <% end %>
   </td>
   <td>
-    <%= link_to document_path(document), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link-body-emphasis" do %>
-      <%= image_tag "https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png", size: '23x23' %>
-    <% end %>
+   <%= button_to document_path(document), method: :delete, class: "delete-button", data: { confirm: "Are you sure?" } do %>
+    <%= image_tag "https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png", size: '22x22' %>
+   <% end %>
   </td>
 </tr>
