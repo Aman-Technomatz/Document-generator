@@ -6,7 +6,6 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @document = Document.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -70,8 +69,7 @@ class DocumentsController < ApplicationController
 
   def document_params
     params.require(:document).permit(
-      :title,
-      :content,
+      :organization_name,
       :document_type,
       :start_date,
       :start_position,
@@ -85,11 +83,7 @@ class DocumentsController < ApplicationController
       :current_salary,
       :end_position,
       :end_date,
-      :last_working_day,
       :gratitude,
-      :new_salary,
-      :effective_date,
-      :reason,
       :employee_id,
       :user_id,
       user_attributes: [:id, :name, :email, :position]
