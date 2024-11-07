@@ -30,7 +30,7 @@
       <% end %>
     </tbody>
   </table>
-  <% if @docuemnts.blank?%>
+  <% if @documents.blank?%>
     <%= render "show_error"%>
   <% else %>
     <%== pagy_bootstrap_nav(@pagy) %>
