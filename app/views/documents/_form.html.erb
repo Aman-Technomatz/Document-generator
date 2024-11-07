@@ -60,29 +60,29 @@
 
         <div class="mb-3" id="for_ctc" style="display: none;">
           <%= form.label :ctc, class: "form-label" %>
-          <%= form.text_field :ctc, class: "form-control form-control-sm" %>
+          <%= form.text_field :ctc, class: "form-control form-control-sm", placeholder: "Please enter salary (CTC) in rupees" %>
         </div>
 
         <div id="appointment_letter_fields" class="conditional-fields" style="display: none;">
           <div class="mb-3">
             <%= form.label :work_timings, class: "form-label" %>
-            <%= form.number_field :work_timings, class: "form-control form-control-sm" %>
+            <%= form.number_field :work_timings, class: "form-control form-control-sm", placeholder: "Please enter work time in hours" %>
           </div>
           <div class="mb-3">
             <%= form.label :probation_period, class: "form-label" %>
-            <%= form.number_field :probation_period, class: "form-control form-control-sm" %>
+            <%= form.number_field :probation_period, class: "form-control form-control-sm", placeholder: "Please enter probation period in months" %>
           </div>
           <div class="mb-3">
             <%= form.label :service_agreement, class: "form-label" %>
-            <%= form.number_field :service_agreement, class: "form-control form-control-sm" %>
+            <%= form.number_field :service_agreement, class: "form-control form-control-sm", placeholder: "Please enter service agreement in years" %>
           </div>
           <div class="mb-3">
             <%= form.label :annual_leave, class: "form-label" %>
-            <%= form.number_field :annual_leave, class: "form-control form-control-sm", min: 0 %>
+            <%= form.number_field :annual_leave, class: "form-control form-control-sm", placeholder: "Please enter annual leave in days", min: 0 %>
           </div>
           <div class="mb-3">
             <%= form.label :notice_period, class: "form-label" %>
-            <%= form.number_field :notice_period, class: "form-control form-control-sm" %>
+            <%= form.number_field :notice_period, class: "form-control form-control-sm", placeholder: "Please enter notice period in days" %>
           </div>
         </div>
 
