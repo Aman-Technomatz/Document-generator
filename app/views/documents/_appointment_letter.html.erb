@@ -19,7 +19,7 @@
   <ul class="mt-3">
     <li><strong>Starting Date:</strong> <%= @document&.start_date&.strftime('%d %B %Y') %></li>
     <li><strong>Work Timings:</strong> Flexible, with <%= @document&.work_timings %> hours of active work from Monday to Friday.</li>
-    <li><strong>Probation Period:</strong> <%= @document&.probation_period.humanize %> months, after which employment becomes permanent.</li>
+    <li><strong>Probation Period:</strong> <%= @document&.probation_period&.humanize %> months, after which employment becomes permanent.</li>
     <li><strong>Service Agreement:</strong> Minimum association period of <%= @document&.service_agreement %> year.</li>
     <li><strong>Salary (CTC):</strong> Rs <%= @document.ctc.round %>/- per annum</li>
     <li><strong>Annual Leave:</strong> <%= @document&.annual_leave %> days of earned leave and 2 optional leave days per year.</li>
