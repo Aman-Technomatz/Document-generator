@@ -9,6 +9,29 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
+    document.getElementById('for_end_date').style.display = 'none';
+
+    const endDateField = document.getElementById('for_end_date');
+    endDateField.style.display = 'none';
+    endDateField.querySelector('input').removeAttribute('required');
+
+    const startDateField = document.getElementById('for_start_date');
+    startDateField.style.display = 'none';
+    startDateField.querySelector('input').removeAttribute('required');
+
+    const ctcField = document.getElementById('for_ctc');
+    ctcField.style.display = 'none';
+    ctcField.querySelector('input').removeAttribute('required');
+
+    const startPositionField = document.getElementById('for_start_position');
+    startPositionField.style.display = 'none';
+    startPositionField.querySelector('input').removeAttribute('required');
+
+    const endPositionField = document.getElementById('for_end_position');
+    endPositionField.style.display = 'none';
+    endPositionField.querySelector('input').removeAttribute('required');
+
+
     document.querySelectorAll('#common_fields input').forEach(function (input) {
       input.setAttribute('required', 'true');
     });
@@ -16,23 +39,40 @@ document.addEventListener('DOMContentLoaded', function () {
     switch (docType) {
       case 'appointment_letter':
         document.getElementById('appointment_letter_fields').style.display = 'block';
+        startDateField.style.display = 'block';
+        startDateField.querySelector('input').setAttribute('required', 'true');
+        ctcField.style.display = 'block';
+        ctcField.querySelector('input').setAttribute('required', 'true');
+        startPositionField.style.display = 'block';
+        startPositionField.querySelector('input').setAttribute('required', 'true');
         document.querySelectorAll('#appointment_letter_fields input').forEach(function (input) {
           input.setAttribute('required', 'true');
         });
         break;
 
       case 'experience_letter':
-        document.getElementById('experience_letter_fields').style.display = 'block';
-        document.querySelectorAll('#experience_letter_fields input').forEach(function (input) {
-          input.setAttribute('required', 'true');
-        });
+        startDateField.style.display = 'block';
+        startDateField.querySelector('input').setAttribute('required', 'true');
+        endDateField.style.display = 'block';
+        endDateField.querySelector('input').setAttribute('required', 'true');
+        endPositionField.style.display = 'block';
+        endPositionField.querySelector('input').setAttribute('required', 'true');
+        break;
+
+      case 'offer_letter':
+        startDateField.style.display = 'block';
+        startDateField.querySelector('input').setAttribute('required', 'true');
+        ctcField.style.display = 'block';
+        ctcField.querySelector('input').setAttribute('required', 'true');
+        startPositionField.style.display = 'block';
+        startPositionField.querySelector('input').setAttribute('required', 'true');
         break;
 
       case 'relieving_letter':
-        document.getElementById('relieving_letter_fields').style.display = 'block';
-        document.querySelectorAll('#relieving_letter_fields input').forEach(function (input) {
-          input.setAttribute('required', 'true');
-        });
+        endDateField.style.display = 'block';
+        endDateField.querySelector('input').setAttribute('required', 'true');
+        endPositionField.style.display = 'block';
+        endPositionField.querySelector('input').setAttribute('required', 'true');
         break;
 
       default:

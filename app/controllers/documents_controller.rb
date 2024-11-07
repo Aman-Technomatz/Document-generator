@@ -96,7 +96,7 @@ class DocumentsController < ApplicationController
       :gratitude,
       :employee_id,
       :user_id,
-      user_attributes: [:id, :name, :email, :position]
+      user_attributes: [:id, :name, :email]
     )
   end
 
