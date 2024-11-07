@@ -26,14 +26,17 @@
 
         <div class="mb-3">
           <%= form.label :document_type, class: "form-label" %>
-          <%= form.select :document_type, options_for_select([
-            ['Select Document Type', ''],
-            ['Relieving Letter', 'relieving_letter'],
-            ['Experience Letter', 'experience_letter'],
-            ['Appointment Letter', 'appointment_letter'],
-            ['Offer Letter', 'offer_letter']]),
-            { required: true }, class: "form-select", id: "document_type" %>
+          <%= form.select :document_type,
+            options_for_select([
+              ['Relieving Letter', 'relieving_letter'],
+              ['Experience Letter', 'experience_letter'],
+              ['Appointment Letter', 'appointment_letter'],
+              ['Offer Letter', 'offer_letter']
+            ]),
+            { prompt: 'Select Document Type', required: true },
+            class: "form-select", id: "document_type" %>
         </div>
+
 
         <div class="mb-3" id="for_start_position" style="display: none;">
           <%= form.label :start_position, class: "form-label" %>
@@ -84,7 +87,7 @@
         </div>
 
         <div class="mb-3">
-          <%= form.label :employee_id, class: "form-label" %>
+          <%= form.label :employee_id, "Employee ID", class: "form-label" %>
           <%= form.text_field :employee_id, class: "form-control form-control-sm" %>
         </div>
 

@@ -1,52 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Experience Letter</title>
-  <style>
-    @page {
-    size: A4;
-    margin: 20mm;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      padding: 0;
-      margin: 0;
-      line-height: 1.6;
-      color: #333;
-    }
-    .header, .footer { text-align: center; font-size: 12px; }
-    h2, h3 { text-align: center; }
-    .disclaimer { font-size: 16px; color: #000; margin-top: 6rem; text-align: center; font-weight: 600 }
-    .header {
-    font-weight: 600;
-    font-size: 16px;
-    color: black;
-    text-decoration: underline;
-  }
-    hr { border: 1px solid #333; }
-  </style>
-</head>
-<body>
-
-  <div class="header py-2">
-    <%= render 'header' %>
-  </div>
-  <% if @document.document_type == 'experience_letter' %>
-      <%= render 'experience_letter' %>
-  <% elsif @document.document_type == 'relieving_letter' %>
-    <%= render 'relieving_letter' %>
-  <% elsif @document.document_type == 'appointment_letter' %>
-    <%= render 'appointment_letter' %>
-  <% elsif @document.document_type == 'offer_letter' %>
-    <%= render 'offer_letter' %>
-  <% end %>
-
-  <div class="footer py-2">
-    <%= render 'footer' %>
-  </div>
-
-</body>
-</html>
-<%# unless request.format.pdf? %>
-  <%#= link_to "Download PDF", document_path(@document, format: :pdf), class: "btn btn-primary" %>
-<%# end %>
+<div class="container mt-4">
+  <p class="text-success"><%= notice %></p>
+  <h1 class="mb-4">Documents</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Document Type</th>
+        <th>Employee Id</th>
+        <th>User Name</th>
+        <th>PDF</th>
+        <th>Edit</th>
+        <th>Destroy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "document", locals: { document: @document } %>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <%= link_to "Back to documents", documents_path, class: 'btn btn-secondary' %>
+</div>
