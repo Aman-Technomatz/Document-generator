@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: %i[ show edit update destroy ]
+  before_action :set_document, only: %i[ show edit update destroy generate_pdf ]
 
   def index
     @documents = Document.search_by_query(params[:query])
@@ -11,6 +11,15 @@ class DocumentsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Document_#{@document.document_type}"
+      end
+    end
+  end
+
+  def generate_pdf
     respond_to do |format|
       format.html
       format.pdf do
@@ -38,7 +47,6 @@ class DocumentsController < ApplicationController
         return render :new, status: :unprocessable_entity
       end
     end
-
     respond_to do |format|
       if @document.save
         format.html { redirect_to @document, notice: "Document was successfully created." }
