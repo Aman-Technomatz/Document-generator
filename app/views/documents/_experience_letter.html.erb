@@ -1,18 +1,18 @@
 <div class="content px-5">
   <h2 class="text-center mb-4 header mt-3">Experience Letter for Employment</h2>
 
-  <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
+  <p class="mt-5 mb-2"><strong>Date:</strong> <%= (@document&.start_date - 5.days)&.strftime('%d %B %Y') %></p>
 
   <p><strong>To Whom It May Concern,</strong></p>
 
   <p class="mt-5 mb-2 lh-lg">
-    This is to certify that <strong><%= @document.user.name.capitalize %></strong> was employed with <strong>Technomatz IT Solutions Pvt Ltd.</strong> from <strong><%= @document&.start_date&.strftime('%d %B %Y') %></strong> to <strong><%= @document&.end_date&.strftime('%d %B %Y') %></strong> in the capacity of  <strong><%= @document.end_position.capitalize %></strong>. During  <strong><%= @document.user.name.capitalize %></strong>'s tenure, they were involved in various
+    This is to certify that <strong><%= @document.user.name.titleize %></strong> was employed with <strong>Technomatz IT Solutions Pvt Ltd.</strong> from <strong><%= @document&.start_date&.strftime('%d %B %Y') %></strong> to <strong><%= @document&.end_date&.strftime('%d %B %Y') %></strong> in the capacity of  <strong><%= @document.end_position.titleize %></strong>. During  <strong><%= @document.user.name.titleize %></strong>'s tenure, they were involved in various
     projects, contributing effectively to the growth and success of the organization. They demonstrated
     a professional attitude and technical expertise throughout their employment.
   </p>
 
   <p class="mt-5">
-    We appreciate the dedication and efforts <strong><%= @document.user.name.capitalize %></strong> put
+    We appreciate the dedication and efforts <strong><%= @document.user.name.titleize %></strong> put
     into their work during their time at Technomatz. We wish them success and all the best in their
     future endeavors.
   </p>

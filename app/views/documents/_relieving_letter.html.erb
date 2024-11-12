@@ -1,13 +1,13 @@
 <div class="content px-5">
   <h2 class="text-center mb-4 header mt-3">Relieving Letter for Employment</h2>
 
-  <p class="mt-5 mb-2"><strong>Date:</strong> <%= Date.today.strftime('%d %B %Y') %></p>
+  <p class="mt-5 mb-2"><strong>Date:</strong> <%= (@document&.start_date - 5.days)&.strftime('%d %B %Y') %></p>
 
-  <p><strong>Dear <%= @document.user.name.capitalize %>,</strong></p>
+  <p><strong>Dear <%= @document.user.name.titleize %>,</strong></p>
 
   <p class="mt-5 mb-2">
     This is with reference to your resignation request. The management has accepted your
-    request, and you are relieved from the services of the position of <strong><%= @document.end_position.capitalize %></strong> with our organization, <strong>Technomatz IT Solutions Pvt Ltd.</strong>, with effect from the close of office hours on  <strong><%= @document&.end_date&.strftime('%d %B %Y') %></strong>.
+    request, and you are relieved from the services of the position of <strong><%= @document.end_position.titleize %></strong> with our organization, <strong>Technomatz IT Solutions Pvt Ltd.</strong>, with effect from the close of office hours on  <strong><%= @document&.end_date&.strftime('%d %B %Y') %></strong>.
   </p>
 
   <p class="lh-lg">
