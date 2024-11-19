@@ -20,10 +20,19 @@ class DocumentsController < ApplicationController
   end
 
   def generate_pdf
+    @document = Document.find(params[:id])
+
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Document_#{@document.document_type}"
+        html = render_to_string(template: "documents/generate_pdf")
+
+        pdf = PDFKit.new(html)
+
+        send_data pdf.to_pdf,
+                  filename: "Document_#{@document.document_type}.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
       end
     end
   end
@@ -104,6 +113,7 @@ class DocumentsController < ApplicationController
       :gratitude,
       :employee_id,
       :user_id,
+      :hr_name,
       user_attributes: [:id, :name, :email]
     )
   end
