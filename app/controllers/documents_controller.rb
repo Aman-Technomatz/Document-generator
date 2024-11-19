@@ -20,8 +20,6 @@ class DocumentsController < ApplicationController
   end
 
   def generate_pdf
-    @document = Document.find(params[:id])
-
     respond_to do |format|
       format.html
       format.pdf do
