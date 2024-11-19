@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require 'pdfkit'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,6 +24,6 @@ module PdfLetterGenerator
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.middleware.use WickedPdf::Middleware
+    config.middleware.use PDFKit::Middleware
   end
 end

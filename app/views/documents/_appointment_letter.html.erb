@@ -1,10 +1,8 @@
-<div class="content px-5">
+<div class="content px-5 content_appointment">
   <h2 class="text-center mb-4 header mt-3">Appointment Letter</h2>
-
-
   <p style="margin-top: 0; margin-bottom: 0;"><strong><%= @document&.start_date&.strftime('%d %B %Y') %></strong></p>
-  <p style="margin-top: 0; margin-bottom: 0;"><strong>Sherya Goyal</strong></p>
-  <p style="margin-top: 0; margin-bottom: 0;"><strong>HR Executive</strong></p>
+  <p style="margin-top: 5px; margin-bottom: 0;"><%= @document.hr_name.titleize %></p>
+  <p style="margin-top: 5px; margin-bottom: 0;"><strong>HR Executive</strong></p>
 
   <p class="mt-4 mb-2"><strong>Subject: </strong>Appointment Letter</p>
 
@@ -30,7 +28,7 @@
     If you have further questions, please contact me or approach the HR department directly.
   </p>
 
-  <p class="mt-5">
+  <p class="mt-4">
     Congratulations on your appointment and welcome to Technomatz IT Solutions Pvt Ltd.
     We look forward to years of fruitful cooperation and success.
   </p>
