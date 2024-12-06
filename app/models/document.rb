@@ -1,6 +1,8 @@
 class Document < ApplicationRecord
   belongs_to :user, optional: true
   accepts_nested_attributes_for :user
+  has_one :payslip, dependent: :destroy
+  accepts_nested_attributes_for :payslip
 
   scope :search_by_query, ->(query) {
     joins(:user).where(

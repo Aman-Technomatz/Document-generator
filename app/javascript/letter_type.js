@@ -31,6 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
     endPositionField.style.display = 'none';
     endPositionField.querySelector('input').removeAttribute('required');
 
+    const payslipFields = document.getElementById('payslip-fields');
+    const payslip = document.getElementById('payslip');
+    payslipFields.style.display = 'none';
+    payslip.style.display = 'none';
+
+
 
     document.querySelectorAll('#common_fields input').forEach(function (input) {
       input.setAttribute('required', 'true');
@@ -75,12 +81,52 @@ document.addEventListener('DOMContentLoaded', function () {
         endPositionField.querySelector('input').setAttribute('required', 'true');
         break;
 
+      case 'payslip':
+        payslipFields.style.display = 'block';
+        payslip.style.display = 'block';
+        document.querySelectorAll('#payslip-fields input').forEach(function (input) {
+          input.setAttribute('required', 'true');
+        });
+        break;
+
       default:
         break;
     }
   }
 
+  // Function to calculate totals for payslip
+  function calculateTotals() {
+    const basicSalary = parseFloat(document.getElementById("basic-salary")?.value) || 0;
+    const hra = parseFloat(document.getElementById("hra")?.value) || 0;
+    const incomeTax = parseFloat(document.getElementById("income-tax")?.value) || 0;
+    const providentFund = parseFloat(document.getElementById("provident-fund")?.value) || 0;
+
+    const grossEarnings = basicSalary + hra;
+    const totalDeductions = incomeTax + providentFund;
+    const netPayable = grossEarnings - totalDeductions;
+
+    const grossEarningsField = document.getElementById("gross-earnings");
+    const totalDeductionsField = document.getElementById("total-deductions");
+    const netPayableField = document.getElementById("net-payable");
+
+    if (grossEarningsField) grossEarningsField.value = grossEarnings.toFixed(2);
+    if (totalDeductionsField) totalDeductionsField.value = totalDeductions.toFixed(2);
+    if (netPayableField) netPayableField.value = netPayable.toFixed(2);
+  }
+
+
+  // Event listener for document type selection
+  document.getElementById('document_type').addEventListener('change', toggleDocumentFields);
+
+  // Event listener for payslip input changes
+  const payslipInputs = ["basic-salary", "hra", "income-tax", "provident-fund"];
+  payslipInputs.forEach((id) => {
+    const input = document.getElementById(id);
+    if (input) {
+      input.addEventListener("input", calculateTotals);
+    }
+  });
+
   toggleDocumentFields();
 
-  document.getElementById('document_type').addEventListener('change', toggleDocumentFields);
 });
