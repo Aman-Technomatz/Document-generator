@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  require 'prawn/table'
+
   before_action :set_document, only: %i[ show edit update destroy generate_pdf ]
 
   def index
@@ -20,17 +22,28 @@ class DocumentsController < ApplicationController
   end
 
   def generate_pdf
-    respond_to do |format|
-      format.html
-      format.pdf do
-        html = render_to_string(template: "documents/generate_pdf")
+    @document = Document.find(params[:id])
 
-        pdf = PDFKit.new(html)
+    if @document.document_type == 'payslip'
+      pdf_content = PdfGeneratorService.new(@document).generate_pdf
 
-        send_data pdf.to_pdf,
-                  filename: "Document_#{@document.document_type}.pdf",
-                  type: 'application/pdf',
-                  disposition: 'inline'
+      send_data pdf_content,
+                filename: "Payslip_#{@document.id}.pdf",
+                type: 'application/pdf',
+                disposition: 'inline'
+    else
+      respond_to do |format|
+        format.html
+        format.pdf do
+          html = render_to_string(template: "documents/generate_pdf")
+
+          pdf = PDFKit.new(html)
+
+          send_data pdf.to_pdf,
+                    filename: "Document_#{@document.document_type}.pdf",
+                    type: 'application/pdf',
+                    disposition: 'inline'
+        end
       end
     end
   end
@@ -38,6 +51,7 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.new
     @document.build_user
+    @document.build_payslip
   end
 
   def edit
@@ -46,6 +60,7 @@ class DocumentsController < ApplicationController
   def create
     if params[:document][:user_option] == "new"
       @document = Document.new(document_params)
+      @payslip = @document.payslip
     else
       user_id = params[:document][:user_id].presence
       @document = Document.new(document_params.except(:user_attributes).merge(user_id: user_id))
@@ -112,7 +127,12 @@ class DocumentsController < ApplicationController
       :employee_id,
       :user_id,
       :hr_name,
-      user_attributes: [:id, :name, :email]
+      :company_address,
+      :city,
+      :pincode,
+      :country,
+      user_attributes: [:id, :name, :email],
+      payslip_attributes: [:pay_period, :paid_days, :loss_of_pay_days, :pay_date, :basic_salary, :income_tax, :house_rent_allowance, :provident_fund, :gross_earnings, :total_deductions, :total_net_payable, :pay_slip_for_month, :logo]
     )
   end
 

@@ -31,7 +31,8 @@
               ['Relieving Letter', 'relieving_letter'],
               ['Experience Letter', 'experience_letter'],
               ['Appointment Letter', 'appointment_letter'],
-              ['Offer Letter', 'offer_letter']
+              ['Offer Letter', 'offer_letter'],
+              ['Payslip', 'payslip']
             ]),
             { prompt: 'Select Document Type', required: true },
             class: "form-select", id: "document_type" %>
@@ -61,6 +62,30 @@
         <div class="mb-3" id="for_ctc" style="display: none;">
           <%= form.label :ctc, class: "form-label" %>
           <%= form.text_field :ctc, class: "form-control form-control-sm", placeholder: "Please enter salary (CTC) in rupees" %>
+        </div>
+
+        <div id="payslip-fields" style="display: none;">
+          <div class="mb-3">
+            <%= form.label :company_address, class: "form-label" %>
+            <%= form.text_field :company_address, class: "form-control form-control-sm" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :city, class: "form-label" %>
+            <%= form.text_field :city, class: "form-control form-control-sm" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :pincode, class: "form-label" %>
+            <%= form.text_field :pincode, class: "form-control form-control-sm" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :country, class: "form-label" %>
+            <%= form.text_field :country, class: "form-control form-control-sm" %>
+          </div>
+
+          <%= render "payslip_form", form: form %>
         </div>
 
         <div id="appointment_letter_fields" class="conditional-fields" style="display: none;">
