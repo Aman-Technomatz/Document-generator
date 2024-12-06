@@ -46,6 +46,8 @@ gem "bootsnap", require: false
 gem 'wkhtmltopdf-binary'
 gem 'humanize'
 gem 'pdfkit', '~> 0.8.0'
+gem 'prawn'
+gem 'prawn-table'
 
 
 # gem "tailwindcss-rails"
