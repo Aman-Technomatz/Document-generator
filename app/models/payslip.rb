@@ -2,12 +2,16 @@ class Payslip < ApplicationRecord
   belongs_to :document, optional: true
   has_one_attached :logo
 
-  before_save :set_default_image
+  before_save :set_default_image, if: -> { logo.blank? }
 
   private
 
   def set_default_image
-    self.logo ||= "app/assets/images/logo.png"
+    logo_path = Rails.root.join('app', 'assets', 'images', 'logo.png')
+
+    if File.exist?(logo_path)
+      self.logo.attach(io: File.open(logo_path), filename: 'logo.png', content_type: 'image/png')
+    end
   end
 
 end

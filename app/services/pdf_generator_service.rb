@@ -99,7 +99,7 @@ class PdfGeneratorService
     left_data = [
       ["Employee Name", ":  #{@document.user.name.titleize}"],
       ["Employee ID", ":  #{@document.employee_id}"],
-      ["Pay Period", ":  #{@payslip.pay_period.strftime("%B %Y")}"],
+      ["Pay Period", ":  #{@payslip.pay_slip_for_month&.strftime("%B %Y")}"],
       ["Pay Date", ":  #{@payslip.pay_date}"]
     ]
 
