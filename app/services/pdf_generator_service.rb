@@ -97,10 +97,10 @@ class PdfGeneratorService
 
     # Left-side content
     left_data = [
-      ["Employee Name", ":#{@document.user.name.titleize}"],
-      ["Employee ID", ":#{@document.employee_id}"],
-      ["Pay Period", ":#{@payslip.pay_period}"],
-      ["Pay Date", ":#{@payslip.pay_date}"]
+      ["Employee Name", ":  #{@document.user.name.titleize}"],
+      ["Employee ID", ":  #{@document.employee_id}"],
+      ["Pay Period", ":  #{@payslip.pay_period.strftime("%B %Y")}"],
+      ["Pay Date", ":  #{@payslip.pay_date}"]
     ]
 
     left_column_width = pdf.bounds.width * 0.65
@@ -153,9 +153,9 @@ class PdfGeneratorService
         pdf.move_down 20
 
         # Remaining text
-        pdf.text "Paid Days          :#{@payslip.paid_days}", size: 10, align: :left
+        pdf.text "Paid Days           :  #{@payslip.paid_days}", size: 10, align: :left
         pdf.move_down 5
-        pdf.text "LOP Days           :#{@payslip.loss_of_pay_days}", size: 10, align: :left
+        pdf.text "LOP Days           :  #{@payslip.loss_of_pay_days}", size: 10, align: :left
       end
     end
 
@@ -177,6 +177,7 @@ class PdfGeneratorService
       ["EARNINGS", "AMOUNT", "DEDUCTIONS", "AMOUNT"],  # Header row
       ["Basic Salary", format_amount(pdf, @payslip.basic_salary), "Income Tax",  "₹#{@payslip.income_tax}"],
       ["House Rent Allowance", "₹#{@payslip.house_rent_allowance}", "Provident Fund", "₹#{@payslip.provident_fund}"],
+      ["Other Allowance", "₹#{@payslip.other_allowance}"],
       ["Gross Earnings", "₹#{@payslip.gross_earnings}", "Total Deductions", "₹#{@payslip.total_deductions}"]
     ]
 
@@ -216,7 +217,7 @@ class PdfGeneratorService
         end
 
         # Highlight "Gross Earnings" and "Total Deductions"
-        if cell.row == 3  # Specific row
+        if cell.row == 4  # Specific row
           cell.font_style = :bold
           cell.background_color = "FFFFCC"  # Light yellow background
         end
@@ -280,7 +281,7 @@ class PdfGeneratorService
 
       # Adjust the vertical position to move the ₹ symbol slightly above
       rupee_y_position = pdf.cursor + 10  # Move up 10 points to raise ₹ symbol
-      pdf.draw_text rupee_text, at: [pdf.cursor + 470, rupee_y_position]
+      pdf.draw_text rupee_text, at: [pdf.cursor + 460, rupee_y_position]
 
       # Now position the amount next to ₹ (using Helvetica for the amount)
       net_pay_text = "#{@payslip.total_net_payable}"
@@ -317,11 +318,11 @@ class PdfGeneratorService
     rupee_width = pdf.width_of(rupee_text)  # Get the width of the ₹ symbol
 
     # Position the ₹ symbol after "Amount In Words"
-    pdf.draw_text rupee_text, at: [amount_text_x + amount_width-240, pdf.cursor]
+    # pdf.draw_text rupee_text, at: [amount_text_x + amount_width-240, pdf.cursor]
 
     # Now position the amount in words text
     amount = @payslip.total_net_payable
-    amount_in_words = "#{humanized_amount(amount)} Only"
+    amount_in_words = "#{number_to_indian_words(amount.to_i)} Only"
     amount_in_words_width = pdf.width_of(amount_in_words, size: 10)  # Get the width of the amount text
 
     # Draw the amount in words after the ₹ symbol
@@ -346,9 +347,53 @@ class PdfGeneratorService
     pdf.fill_color "000000" # Reset to black for subsequent text
   end
 
+  def number_to_indian_words(number)
+    words = {
+      0 => "Zero", 1 => "One", 2 => "Two", 3 => "Three", 4 => "Four", 5 => "Five",
+      6 => "Six", 7 => "Seven", 8 => "Eight", 9 => "Nine", 10 => "Ten",
+      11 => "Eleven", 12 => "Twelve", 13 => "Thirteen", 14 => "Fourteen",
+      15 => "Fifteen", 16 => "Sixteen", 17 => "Seventeen", 18 => "Eighteen",
+      19 => "Nineteen", 20 => "Twenty", 30 => "Thirty", 40 => "Forty",
+      50 => "Fifty", 60 => "Sixty", 70 => "Seventy", 80 => "Eighty", 90 => "Ninety"
+    }
 
-  def humanized_amount(amount)
-    amount.to_i.humanize.titleize
+    return "Zero" if number == 0
+
+    parts = []
+
+    # Break the number into components
+    crores = number / 10000000
+    parts << "#{convert_to_words(crores, words)} Crore" if crores > 0
+    number %= 10000000
+
+    lakhs = number / 100000
+    parts << "#{convert_to_words(lakhs, words)} Lakh" if lakhs > 0
+    number %= 100000
+
+    thousands = number / 1000
+    parts << "#{convert_to_words(thousands, words)} Thousand" if thousands > 0
+    number %= 1000
+
+    hundreds = number / 100
+    parts << "#{convert_to_words(hundreds, words)} Hundred" if hundreds > 0
+    number %= 100
+
+    parts << "and" if parts.any? && number > 0  # Add "and" before the last part
+
+    parts << convert_to_words(number, words) if number > 0
+
+    parts.reject(&:nil?).reject(&:empty?).join(" ").strip
+  end
+
+  def convert_to_words(number, words)
+    return "" if number == 0
+    if words.key?(number)
+      words[number]
+    else
+      tens = number / 10 * 10
+      units = number % 10
+      [words[tens], words[units]].compact.join(" ").strip
+    end
   end
 
   def format_amount(pdf, amount)

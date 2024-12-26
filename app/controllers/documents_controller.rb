@@ -132,7 +132,7 @@ class DocumentsController < ApplicationController
       :pincode,
       :country,
       user_attributes: [:id, :name, :email],
-      payslip_attributes: [:pay_period, :paid_days, :loss_of_pay_days, :pay_date, :basic_salary, :income_tax, :house_rent_allowance, :provident_fund, :gross_earnings, :total_deductions, :total_net_payable, :pay_slip_for_month, :logo]
+      payslip_attributes: [:pay_period, :paid_days, :loss_of_pay_days, :pay_date, :basic_salary, :income_tax, :house_rent_allowance, :provident_fund, :gross_earnings, :total_deductions, :total_net_payable, :pay_slip_for_month, :logo, :other_allowance]
     )
   end
 

@@ -67,22 +67,22 @@
         <div id="payslip-fields" style="display: none;">
           <div class="mb-3">
             <%= form.label :company_address, class: "form-label" %>
-            <%= form.text_field :company_address, class: "form-control form-control-sm" %>
+            <%= form.text_field :company_address, value: 'PU4', class: "form-control form-control-sm" %>
           </div>
 
           <div class="mb-3">
             <%= form.label :city, class: "form-label" %>
-            <%= form.text_field :city, class: "form-control form-control-sm" %>
+            <%= form.text_field :city, value: 'Indore', class: "form-control form-control-sm" %>
           </div>
 
           <div class="mb-3">
             <%= form.label :pincode, class: "form-label" %>
-            <%= form.text_field :pincode, class: "form-control form-control-sm" %>
+            <%= form.text_field :pincode, value: '452001', class: "form-control form-control-sm" %>
           </div>
 
           <div class="mb-3">
             <%= form.label :country, class: "form-label" %>
-            <%= form.text_field :country, class: "form-control form-control-sm" %>
+            <%= form.text_field :country, value: 'India', class: "form-control form-control-sm" %>
           </div>
 
           <%= render "payslip_form", form: form %>

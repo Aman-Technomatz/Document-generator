@@ -100,8 +100,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const hra = parseFloat(document.getElementById("hra")?.value) || 0;
     const incomeTax = parseFloat(document.getElementById("income-tax")?.value) || 0;
     const providentFund = parseFloat(document.getElementById("provident-fund")?.value) || 0;
+    const otherAllowance = parseFloat(document.getElementById("oa")?.value) || 0;
 
-    const grossEarnings = basicSalary + hra;
+    const grossEarnings = basicSalary + hra + otherAllowance;
     const totalDeductions = incomeTax + providentFund;
     const netPayable = grossEarnings - totalDeductions;
 
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('document_type').addEventListener('change', toggleDocumentFields);
 
   // Event listener for payslip input changes
-  const payslipInputs = ["basic-salary", "hra", "income-tax", "provident-fund"];
+  const payslipInputs = ["basic-salary", "hra", "income-tax", "provident-fund", "oa"];
   payslipInputs.forEach((id) => {
     const input = document.getElementById(id);
     if (input) {

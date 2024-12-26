@@ -81,6 +81,12 @@
             <%= payslip_form.text_field :house_rent_allowance, id: "hra", class: "form-control form-control-sm", placeholder: "Enter HRA" %>
           </td>
 
+          <td><%= payslip_form.label :other_allowance, "Other Allowance", class: "form-label" %></td>
+          <td>
+            <%= payslip_form.text_field :other_allowance, id: "oa", class: "form-control form-control-sm", placeholder: "Enter OA" %>
+          </td>
+        </tr>
+        <tr>
           <td><%= payslip_form.label :provident_fund, "Provident Fund", class: "form-label" %></td>
           <td>
             <%= payslip_form.text_field :provident_fund, id: "provident-fund", class: "form-control form-control-sm", placeholder: "Enter Provident Fund" %>
