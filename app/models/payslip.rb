@@ -3,6 +3,7 @@ class Payslip < ApplicationRecord
   has_one_attached :logo
 
   before_save :set_default_image, if: -> { logo.blank? }
+  attr_accessor :pay_slip_for_end_month
 
   private
 

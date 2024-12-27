@@ -21,6 +21,13 @@
       <%= payslip_form.date_field :pay_slip_for_month, class: "form-control form-control-sm", placeholder: "Select Month and Year" %>
     </td>
 
+    <td>
+      <%= payslip_form.label :pay_slip_for_end_month, "End Date for bulk create", class: "form-label" %>
+    </td>
+    <td>
+      <%= payslip_form.date_field :pay_slip_for_end_month, class: "form-control form-control-sm", placeholder: "Select End Date for Bulk Upload" %>
+    </td>
+    <br>
     <div class="mb-3">
       <h5>Employee Pay Summary*</h5>
     </div>

@@ -98,7 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document
           .querySelectorAll("#payslip-fields input")
           .forEach(function (input) {
-            if (input.id != "document_payslip_attributes_logo") {
+            if (
+              input.id != "document_payslip_attributes_logo" &&
+              input.id != "document_payslip_attributes_pay_slip_for_end_month"
+            ) {
               input.setAttribute("required", "true");
             }
           });
