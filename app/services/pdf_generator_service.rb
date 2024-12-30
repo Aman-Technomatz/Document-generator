@@ -59,8 +59,11 @@ class PdfGeneratorService
     # end
 
     # Positioning the logo slightly lower
+    logo_path = Rails.root.join('app', 'assets', 'images', 'logo.png')
     if @payslip.logo.attached?
       pdf.image StringIO.new(@payslip.logo.download), width: logo_width, height: logo_height, at: [0, pdf.cursor + 15]
+    else
+      pdf.image logo_path.to_s, width: logo_width, height: logo_height, at: [0, pdf.cursor + 15]
     end
 
     # Organization details next to the logo

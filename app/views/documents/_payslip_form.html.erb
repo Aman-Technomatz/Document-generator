@@ -43,7 +43,7 @@
           </td>
           <td><%= payslip_form.label :loss_of_pay_days, "Loss Of Pay Days", class: "form-label" %></td>
           <td>
-            <%= payslip_form.text_field :loss_of_pay_days, class: "form-control form-control-sm", placeholder: "Enter Loss Of Pay Days" %>
+            <%= payslip_form.text_field :loss_of_pay_days, class: "form-control form-control-sm", placeholder: "Enter Loss Of Pay Days", value: payslip_form.object.loss_of_pay_days || 0 %>
           </td>
         </tr>
 
@@ -78,25 +78,25 @@
 
           <td><%= payslip_form.label :income_tax, "Income Tax", class: "form-label" %></td>
           <td>
-            <%= payslip_form.text_field :income_tax, id: "income-tax", class: "form-control form-control-sm", placeholder: "Enter Income Tax" %>
+            <%= payslip_form.text_field :income_tax, id: "income-tax", class: "form-control form-control-sm", placeholder: "Enter Income Tax", value: payslip_form.object.income_tax || 0 %>
           </td>
         </tr>
 
         <tr>
           <td><%= payslip_form.label :house_rent_allowance, "House Rent Allowance", class: "form-label" %></td>
           <td>
-            <%= payslip_form.text_field :house_rent_allowance, id: "hra", class: "form-control form-control-sm", placeholder: "Enter HRA" %>
+            <%= payslip_form.text_field :house_rent_allowance, id: "hra", class: "form-control form-control-sm", placeholder: "Enter HRA", value: payslip_form.object.house_rent_allowance || 0 %>
           </td>
 
           <td><%= payslip_form.label :other_allowance, "Other Allowance", class: "form-label" %></td>
           <td>
-            <%= payslip_form.text_field :other_allowance, id: "oa", class: "form-control form-control-sm", placeholder: "Enter OA" %>
+            <%= payslip_form.text_field :other_allowance, id: "oa", class: "form-control form-control-sm", placeholder: "Enter OA", value: payslip_form.object.other_allowance || 0 %>
           </td>
         </tr>
         <tr>
           <td><%= payslip_form.label :provident_fund, "Provident Fund", class: "form-label" %></td>
           <td>
-            <%= payslip_form.text_field :provident_fund, id: "provident-fund", class: "form-control form-control-sm", placeholder: "Enter Provident Fund" %>
+            <%= payslip_form.text_field :provident_fund, id: "provident-fund", class: "form-control form-control-sm", placeholder: "Enter Provident Fund", value: payslip_form.object.provident_fund || 0 %>
           </td>
         </tr>
 
