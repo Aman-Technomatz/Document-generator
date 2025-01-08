@@ -94,4 +94,19 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+    # Action Mailer Settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    domain: 'technomatz.com',
+    user_name: ENV['GMAIL_USERNAME'], # Set this in your environment
+    password: ENV['GMAIL_PASSWORD'], # Set this in your environment
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
+  # Ensure emails are sent
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'yourdomain.com', protocol: 'https' }
 end
