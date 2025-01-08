@@ -57,8 +57,12 @@ gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'sassc-rails'
 gem 'cssbundling-rails'
 gem 'autoprefixer-rails'
+gem 'sendgrid-ruby'
+gem 'figaro'
 
 group :development, :test do
+  gem 'letter_opener'
+  gem 'byebug'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 end

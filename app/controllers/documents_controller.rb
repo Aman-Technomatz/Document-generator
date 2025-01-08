@@ -65,8 +65,9 @@ class DocumentsController < ApplicationController
       # New user flow
       @document = Document.new(document_params)
       if pay_slip_for_end_month.present?
-        create_bulk_payslips(@document, pay_slip_for_end_month)
+        doc_objects = create_bulk_payslips(@document, pay_slip_for_end_month)
         redirect_to documents_path, notice: "Documents were successfully created."
+        send_bulk_document_through_mail(doc_objects)
         return # Stop further execution
       else
         # Single payslip creation logic
@@ -84,8 +85,9 @@ class DocumentsController < ApplicationController
       end
 
       if pay_slip_for_end_month.present?
-        create_bulk_payslips(@document, pay_slip_for_end_month)
+        doc_objects = create_bulk_payslips(@document, pay_slip_for_end_month)
         redirect_to documents_path, notice: "Documents were successfully created."
+        send_bulk_document_through_mail(doc_objects)
         return # Stop further execution
       else
         # Single payslip creation logic
@@ -164,6 +166,7 @@ class DocumentsController < ApplicationController
       # Move to the next month
       current_month = current_month.next_month.beginning_of_month
     end
+    created_documents
   end
 
   def adjust_pay_date(current_month, base_pay_date)
@@ -183,6 +186,27 @@ class DocumentsController < ApplicationController
     adjusted_date
   end
 
+  def send_bulk_document_through_mail(doc_objects)
+    attachments = []
+    doc_objects.each do |doc|
+      pdf_content = PdfGeneratorService.new(doc).generate_pdf
+
+      temp_file = Tempfile.new(["document_#{doc.id}", ".pdf"])
+      temp_file.binmode
+      temp_file.write(pdf_content)
+      temp_file.rewind
+
+      attachments << { name: "Document_#{doc.id}.pdf", file: temp_file }
+    end
+    # Send email with attachments
+    DocumentMailer.send_documents(doc_objects.first.user.email, attachments).deliver_now
+
+    # Cleanup temporary files
+    attachments.each do |attachment|
+      attachment[:file].close
+      attachment[:file].unlink
+    end
+  end
 
   def set_document
   @document = Document.find(params[:id])
